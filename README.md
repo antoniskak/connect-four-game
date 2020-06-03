@@ -1,4 +1,4 @@
-# connect-four-game html css javascript JQuery
+# connect-four-game
 Connect Four game built with JQuery
 
 Connect Four is a two-player board connection game in which each player has a unique color-id. The players take turns dropping their unique colored disc from the top into a seven-column six-row vertically suspended grid. Every dropping piece falls from the top to the bottom until the lowest available space is met.
