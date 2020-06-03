@@ -1,0 +1,13 @@
+/* #startbtn{
+  width: 65px;
+  height: 45px;
+} */
+
+.board button{
+  width: 65px;
+  height: 65px;
+  background-color: black; //	rgb(0,0,0)
+  margin: 1px;
+  border: 2px solid blue;
+  border-radius: 50px;
+}
