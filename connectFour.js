@@ -46,7 +46,7 @@ function checkHorizontal(){
 for four same color discs connected in a row (vertically)*/
 function checkVertical(){
   for (col = 0; col < 7; col++){
-    for (row = 0; row < 4; row++){
+    for (row = 0; row < 3; row++){
       if(returnColor(row,col) === returnColor(row+1,col)
         && returnColor(row,col) === returnColor(row+2,col)
         && returnColor(row,col) === returnColor(row+3,col)
@@ -58,6 +58,9 @@ function checkVertical(){
   }
 }
 
+function checkDiagonal(){
+
+}
 
 /*Function end ends the current game when we have a winner*/
 function end(winner){
