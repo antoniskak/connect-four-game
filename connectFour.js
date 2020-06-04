@@ -23,10 +23,9 @@ function checkEmpty(colIndex){
     }
   }
 }
-
-//////////////////////////////////////////////////////////////
-//Start Game
-/////////////////////////////////////////////////////////////
+/*//////////////////////////////////////////////////////////////
+                           Start Game
+/////////////////////////////////////////////////////////////*/
 $('#startbtn').on('click', start);
 
 function start(){
@@ -35,23 +34,40 @@ function start(){
   var playerTwoColor = 'rgb(255, 255, 0)'; //yellow
   var table = $('table tr');
 
-  var playerOne = prompt("Player One: Enter Your Name, you will be Blue");
-  var playerTwo = prompt("Player Two: Enter Your Name, you will be Red");
+  var playerOne = prompt("Player One: Enter Your Name, you will be Red");
+  var playerTwo = prompt("Player Two: Enter Your Name, you will be Yellow");
+
   // Player 1 starts the game
-  var nowPlaying = playerOne;
   var player = 1;
-  curColor = playerOneColor;
-  // console.log(color);
-  $('h4').text("It's "+playerOne+"'s turn. Pick a column to drop a red chip");
+  var curColor = playerOneColor;
+  var nowPlaying = playerOne;
+
+  $('#startbtn').toggle();
+    $('h3').text("It's "+playerOne+"'s turn. Pick a column to drop a red chip");
 
   //Attach a click event to the table button elements
   $('table button').on("click", function(){
     //Get column index
     var colIndex = $(this).closest('td').index();
-    // console.log(myCol);
+    //Get row index
     var rowIndex = checkEmpty(colIndex);
-    console.log(rowIndex);
-    console.log(curColor);
-    // changeColor(rowIndex, colIndex, curColor);
+    //Change color of given row and column
+    changeColor(rowIndex, colIndex, curColor);
+
+    //Check if we have a winner
+    
+
+    //Change player
+    player = player * -1;
+    if(player === 1){
+      curColor = playerOneColor;
+      nowPlaying = playerOne;
+      $('h3').text("It's "+playerOne+"'s turn. Pick a column to drop a red chip");
+    }
+    else{
+      curColor = playerTwoColor;
+      nowPlaying = playerTwo;
+      $('h3').text("It's "+playerTwo+"'s turn. Pick a column to drop a yellow chip");
+    }
   })
 }

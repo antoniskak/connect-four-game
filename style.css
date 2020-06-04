@@ -1,7 +1,6 @@
-/* #startbtn{
-  width: 65px;
-  height: 45px;
-} */
+#startbtn{
+  border: 1px solid black;
+}
 
 .board button{
   width: 65px;
