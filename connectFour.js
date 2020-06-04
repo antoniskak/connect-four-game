@@ -23,6 +23,14 @@ function checkEmpty(colIndex){
     }
   }
 }
+
+/*Function end ends the current game when we have a winner*/
+function end(winner){
+  $('#headings').fadeOut('fast');
+  $('.board').html('Refresh your page to start again!')
+  alert(winner+" is the winner!");
+}
+
 /*//////////////////////////////////////////////////////////////
                            Start Game
 /////////////////////////////////////////////////////////////*/
@@ -41,9 +49,10 @@ function start(){
   var player = 1;
   var curColor = playerOneColor;
   var nowPlaying = playerOne;
+  var check = true;
 
   $('#startbtn').toggle();
-    $('h3').text("It's "+playerOne+"'s turn. Pick a column to drop a red chip");
+  $('h3').text("It's "+playerOne+"'s turn. Pick a column to drop a red chip");
 
   //Attach a click event to the table button elements
   $('table button').on("click", function(){
@@ -54,8 +63,14 @@ function start(){
     //Change color of given row and column
     changeColor(rowIndex, colIndex, curColor);
 
+    ////////////////TEST
+    ////////////////////
     //Check if we have a winner
-    
+    if (check==true){
+      winner = nowPlaying;
+      end(winner);
+    }
+
 
     //Change player
     player = player * -1;
@@ -68,6 +83,9 @@ function start(){
       curColor = playerTwoColor;
       nowPlaying = playerTwo;
       $('h3').text("It's "+playerTwo+"'s turn. Pick a column to drop a yellow chip");
+      /////////////////////////////////////////////////
+      check=true;
+      /////////////////////////////////////////////////
     }
   })
 }
