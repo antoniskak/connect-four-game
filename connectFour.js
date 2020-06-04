@@ -24,6 +24,41 @@ function checkEmpty(colIndex){
   }
 }
 
+/*Function checkHorizontal will check each row of the board
+for four same color discs connected in a row (horizontally)*/
+function checkHorizontal(){
+  // check = false;
+  for (var row = 0; row < 6; row++){
+    for ( var col = 0; col < 4; col++ ){
+      if (returnColor(row,col) === returnColor(row,col+1)
+        && returnColor(row,col) === returnColor(row,col+2)
+        && returnColor(row,col) === returnColor(row,col+3)
+        && returnColor(row,col) !== 'rgb(0, 0, 0)'
+        && returnColor(row,col) !== undefined){
+          // check=true;
+          return true;
+      }
+    }
+  }
+}
+
+/*Function checkVertical will check each column of the board
+for four same color discs connected in a row (vertically)*/
+function checkVertical(){
+  for (col = 0; col < 7; col++){
+    for (row = 0; row < 4; row++){
+      if(returnColor(row,col) === returnColor(row+1,col)
+        && returnColor(row,col) === returnColor(row+2,col)
+        && returnColor(row,col) === returnColor(row+3,col)
+        && returnColor(row,col) !== 'rgb(0, 0, 0)'
+        && returnColor(row,col) !== undefined){
+          return true;
+        }
+    }
+  }
+}
+
+
 /*Function end ends the current game when we have a winner*/
 function end(winner){
   $('#headings').fadeOut('fast');
@@ -49,7 +84,6 @@ function start(){
   var player = 1;
   var curColor = playerOneColor;
   var nowPlaying = playerOne;
-  var check = true;
 
   $('#startbtn').toggle();
   $('h3').text("It's "+playerOne+"'s turn. Pick a column to drop a red chip");
@@ -63,10 +97,8 @@ function start(){
     //Change color of given row and column
     changeColor(rowIndex, colIndex, curColor);
 
-    ////////////////TEST
-    ////////////////////
-    //Check if we have a winner
-    if (check==true){
+    //Check if we have a winner (horizontally, vertically or diagonally)
+    if (checkHorizontal() || checkVertical()){
       winner = nowPlaying;
       end(winner);
     }
@@ -77,12 +109,14 @@ function start(){
     if(player === 1){
       curColor = playerOneColor;
       nowPlaying = playerOne;
-      $('h3').text("It's "+playerOne+"'s turn. Pick a column to drop a red chip");
+      $('h3').text("It's "+playerOne+"'s turn.\
+       Pick a column to drop a red chip");
     }
     else{
       curColor = playerTwoColor;
       nowPlaying = playerTwo;
-      $('h3').text("It's "+playerTwo+"'s turn. Pick a column to drop a yellow chip");
+      $('h3').text("It's "+playerTwo+"'s turn.\
+        Pick a column to drop a yellow chip");
       /////////////////////////////////////////////////
       check=true;
       /////////////////////////////////////////////////
