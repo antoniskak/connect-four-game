@@ -45,8 +45,8 @@ function checkHorizontal(){
 /*Function checkVertical will check each column of the board
 for four same color discs connected in a row (vertically)*/
 function checkVertical(){
-  for (col = 0; col < 7; col++){
-    for (row = 0; row < 3; row++){
+  for (var col = 0; col < 7; col++){
+    for (var row = 0; row < 3; row++){
       if(returnColor(row,col) === returnColor(row+1,col)
         && returnColor(row,col) === returnColor(row+2,col)
         && returnColor(row,col) === returnColor(row+3,col)
@@ -58,8 +58,28 @@ function checkVertical(){
   }
 }
 
+/*Function checkDiagonal will check for four same color discs connected
+diagonal going down from row 0 to row 2 and checking the diagonal neigbours
+of each disc*/
 function checkDiagonal(){
-
+  for (var row = 0; row < 3; row++){
+    for (var col = 0; col < 7; col++){
+      if (returnColor(row,col) === returnColor(row+1,col+1)
+        && returnColor(row,col) === returnColor(row+2,col+2)
+        && returnColor(row,col) === returnColor(row+3,col+3)
+        && returnColor(row,col) !== 'rgb(0, 0, 0)'
+        && returnColor(row,col) !== undefined){
+          return true;
+        }
+      else if(returnColor(row,col) === returnColor(row+1,col-1)
+          && returnColor(row,col) === returnColor(row+2,col-2)
+          && returnColor(row,col) === returnColor(row+3,col-3)
+          && returnColor(row,col) !== 'rgb(0, 0, 0)'
+          && returnColor(row,col) !== undefined){
+            return true;
+      }
+    }
+  }
 }
 
 /*Function end ends the current game when we have a winner*/
@@ -101,7 +121,7 @@ function start(){
     changeColor(rowIndex, colIndex, curColor);
 
     //Check if we have a winner (horizontally, vertically or diagonally)
-    if (checkHorizontal() || checkVertical()){
+    if (checkHorizontal() || checkVertical() || checkDiagonal()){
       winner = nowPlaying;
       end(winner);
     }
