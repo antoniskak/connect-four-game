@@ -9,7 +9,6 @@ function returnColor(rowIndex, colIndex){
   return $('table tr').eq(rowIndex).find('td').eq(colIndex).find('button').css('background-color');
 }
 
-
 /*Function checkEmpty will check for the first empty button (rowIndex)
 starting from the bottom to the top of a given column*/
 function checkEmpty(colIndex){
@@ -85,7 +84,7 @@ function checkDiagonal(){
 /*Function end ends the current game when we have a winner*/
 function end(winner){
   $('#headings').fadeOut('fast');
-  $('.board').html('Refresh your page to start again!')
+  $('.board').html('Refresh your page to start again!');
   alert(winner+" is the winner!");
 }
 
