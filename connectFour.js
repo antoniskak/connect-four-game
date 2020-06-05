@@ -12,7 +12,7 @@ function returnColor(rowIndex, colIndex){
 /*Function checkEmpty will check for the first empty button (rowIndex)
 starting from the bottom to the top of a given column*/
 function checkEmpty(colIndex){
-//Initialize empty chip to the bottom row
+  //Initialize empty chip to the bottom row
   var curCell = returnColor(5, colIndex);
   //Check from the bottom up
   for (var row = 5; row > -1; row--){
@@ -97,7 +97,6 @@ function start(){
   var game_on = true;
   var playerOneColor = 'rgb(255, 0, 0)'; //red
   var playerTwoColor = 'rgb(255, 255, 0)'; //yellow
-  var table = $('table tr');
 
   var playerOne = prompt("Player One: Enter Your Name, you will be Red");
   var playerTwo = prompt("Player Two: Enter Your Name, you will be Yellow");
@@ -139,9 +138,6 @@ function start(){
       nowPlaying = playerTwo;
       $('h3').text("It's "+playerTwo+"'s turn.\
         Pick a column to drop a yellow chip");
-      /////////////////////////////////////////////////
-      check=true;
-      /////////////////////////////////////////////////
     }
   })
 }
